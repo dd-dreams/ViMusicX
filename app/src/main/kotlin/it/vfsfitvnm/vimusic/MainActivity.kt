@@ -137,10 +137,6 @@ class MainActivity : AppCompatActivity(), PersistMapOwner {
     var client = OkHttpClient()
     var request = OkHttpRequest(client)
 
-
-
-
-
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             if (service is PlayerService.Binder) {
@@ -162,8 +158,6 @@ class MainActivity : AppCompatActivity(), PersistMapOwner {
         bindService(intent<PlayerService>(), serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
-
-
     @UnstableApi
     @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
     @ExperimentalComposeUiApi
@@ -184,10 +178,6 @@ class MainActivity : AppCompatActivity(), PersistMapOwner {
 
         val launchedFromNotification = intent?.extras?.getBoolean("expandPlayerBottomSheet") == true
 
-        //Log.d("mediaItemLang",LocaleListCompat.getDefault().get(0).toString())
-        //Innertube.localeHl = LocaleListCompat.getDefault().get(0).toString()
-        //Log.d("mediaItemLang",LocaleListCompat.getDefault().get(0).toString()+" > "+Innertube.localeHl)
-
         setContent {
 
             val url = "https://raw.githubusercontent.com/fast4x/RiMusic/master/updatedVersion/updatedVersion.ver"
@@ -202,19 +192,6 @@ class MainActivity : AppCompatActivity(), PersistMapOwner {
                             //val file = getFilesDir() //shows as unresolved reference
                             val file = File(filesDir, "RiMusicUpdatedVersion.ver")
                             file.writeText(newVersion)
-                            // if get json
-                            //var json = responseData?.let { JSONObject(it) }
-                            //println("Request Successful!!")
-                            //println(json)
-                            //val responseObject = json?.getJSONObject("response")
-                            //val docs = json?.getJSONArray("updatedVersion")
-                            //    if (json != null) {
-                            //        Log.d("UpdatedVersion",json.getString("updatedVersion"))
-                            //    }
-
-
-
-                            this@MainActivity
                         } catch (e: JSONException) {
                             e.printStackTrace()
                         }
@@ -226,12 +203,6 @@ class MainActivity : AppCompatActivity(), PersistMapOwner {
                     Log.d("UpdatedVersion","Check failure")
                 }
             })
-
-            /*  */
-
-
-
-
 
             val coroutineScope = rememberCoroutineScope()
             val isSystemInDarkTheme = isSystemInDarkTheme()
