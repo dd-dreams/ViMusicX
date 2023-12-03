@@ -62,8 +62,6 @@ import it.vfsfitvnm.innertube.models.NavigationEndpoint
 import it.vfsfitvnm.vimusic.Database
 import it.vfsfitvnm.vimusic.LocalPlayerServiceBinder
 import it.vfsfitvnm.vimusic.R
-import it.vfsfitvnm.vimusic.equalizer.audio.VisualizerComputer
-import it.vfsfitvnm.vimusic.equalizer.audio.VisualizerData
 import it.vfsfitvnm.vimusic.models.Info
 import it.vfsfitvnm.vimusic.models.Song
 import it.vfsfitvnm.vimusic.models.ui.UiMedia

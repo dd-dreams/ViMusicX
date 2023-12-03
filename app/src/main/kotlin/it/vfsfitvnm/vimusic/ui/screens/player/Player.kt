@@ -465,10 +465,6 @@ fun Player(
             mutableStateOf(false)
         }
 
-        var isShowingEqualizer by rememberSaveable {
-            mutableStateOf(false)
-        }
-
         var thumbnailTapEnabled by rememberPreference(thumbnailTapEnabledKey, false)
 
         val playerBottomSheetState = rememberBottomSheetState(
@@ -492,8 +488,6 @@ fun Player(
                 onShowLyrics = { isShowingLyrics = it },
                 isShowingStatsForNerds = isShowingStatsForNerds,
                 onShowStatsForNerds = { isShowingStatsForNerds = it },
-                isShowingEqualizer = isShowingEqualizer,
-                onShowEqualizer = { isShowingEqualizer = it },
                 modifier = modifier
                     .nestedScroll(layoutState.preUpPostDownNestedScrollConnection)
             )
@@ -750,27 +744,11 @@ fun Player(
                         color = if (isShowingLyrics) colorPalette.text else colorPalette.textDisabled,
                         enabled = true,
                         onClick = {
-                            if (isShowingEqualizer) isShowingEqualizer = !isShowingEqualizer
                             isShowingLyrics = !isShowingLyrics
                         },
                         modifier = Modifier
                             .size(24.dp),
                     )
-
-                    if (playerVisualizerType != PlayerVisualizerType.Disabled)
-                    IconButton(
-                        icon = R.drawable.sound_effect,
-                        color = if (isShowingEqualizer) colorPalette.text else colorPalette.textDisabled,
-                        enabled = true,
-                        onClick = {
-                            if (isShowingLyrics) isShowingLyrics = !isShowingLyrics
-                            isShowingEqualizer = !isShowingEqualizer
-                        },
-                        modifier = Modifier
-                            .size(24.dp)
-                    )
-
-
 
                     IconButton(
                         icon = R.drawable.chevron_up,

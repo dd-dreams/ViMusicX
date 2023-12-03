@@ -185,8 +185,6 @@ fun HomeScreen(
                     Item(3, stringResource(R.string.albums), R.drawable.disc)
                     Item(4, stringResource(R.string.library), R.drawable.library)
                     Item(5, stringResource(R.string.discovery), R.drawable.megaphone)
-                    //Item(6, "Equalizer", R.drawable.musical_notes)
-                    //Item(6, "Settings", R.drawable.equalizer)
                 }
             ) { currentTabIndex ->
                 saveableStateHolder.SaveableStateProvider(key = currentTabIndex) {
@@ -225,7 +223,6 @@ fun HomeScreen(
                             onSearchClick = { searchRoute("") }
                         )
 
-                        //6 -> HomeEqualizer( )
                         /*
                         5 -> HomeStatistics(
                             onStatisticsType = { statisticsTypeRoute(it)},

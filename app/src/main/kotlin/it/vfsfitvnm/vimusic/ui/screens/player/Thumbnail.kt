@@ -61,8 +61,6 @@ fun Thumbnail(
     onShowLyrics: (Boolean) -> Unit,
     isShowingStatsForNerds: Boolean,
     onShowStatsForNerds: (Boolean) -> Unit,
-    isShowingEqualizer: Boolean,
-    onShowEqualizer: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val binder = LocalPlayerServiceBinder.current
@@ -163,7 +161,6 @@ fun Thumbnail(
                             onTap = if (thumbnailTapEnabledKey) {
                                 {
                                     onShowLyrics(true)
-                                    onShowEqualizer(false)
                                 }
                             } else null
                         )
@@ -186,11 +183,6 @@ fun Thumbnail(
                 mediaId = currentWindow.mediaItem.mediaId,
                 isDisplayed = isShowingStatsForNerds && error == null,
                 onDismiss = { onShowStatsForNerds(false) }
-            )
-
-            ShowEqualizer(
-                isDisplayed = isShowingEqualizer && error == null,
-                onDismiss = { onShowEqualizer(false) }
             )
 
 
