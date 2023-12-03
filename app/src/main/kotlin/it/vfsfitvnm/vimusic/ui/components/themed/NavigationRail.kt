@@ -45,9 +45,6 @@ import it.vfsfitvnm.vimusic.utils.semiBold
 inline fun NavigationRail(
     topIconButtonId: Int,
     noinline onTopIconButtonClick: () -> Unit,
-    topIconButton2Id: Int,
-    noinline onTopIconButton2Click: () -> Unit,
-    showButton2: Boolean,
     tabIndex: Int,
     crossinline onTabIndexChanged: (Int) -> Unit,
     content: @Composable ColumnScope.(@Composable (Int, String, Int) -> Unit) -> Unit,
@@ -88,23 +85,6 @@ inline fun NavigationRail(
                     .padding(all = 12.dp)
                     .size(22.dp)
             )
-            if (showButton2) {
-                Image(
-                    painter = painterResource(topIconButton2Id),
-                    contentDescription = null,
-                    colorFilter = ColorFilter.tint(colorPalette.textSecondary),
-                    modifier = Modifier
-                        .offset(
-                            x = if (isLandscape) 0.dp else Dimensions.navigationRailIconOffset,
-                            y = 70.dp
-                        )
-                        .clip(CircleShape)
-                        .clickable(onClick = onTopIconButton2Click)
-                        .padding(all = 12.dp)
-                        .size(22.dp)
-                )
-            }
-
         }
 
         Column(
