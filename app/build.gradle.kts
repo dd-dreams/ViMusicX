@@ -9,7 +9,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "it.fast4x.rimusic"
+        applicationId = "it.ddreams.vimusicx"
         minSdk = 21
         targetSdk = 33
         versionCode = 6
@@ -29,13 +29,13 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
-            manifestPlaceholders["appName"] = "RiMusic-Debug"
+            manifestPlaceholders["appName"] = "ViMusicX-Debug"
         }
 
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            manifestPlaceholders["appName"] = "RiMusic"
+            manifestPlaceholders["appName"] = "ViMusicX"
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -67,7 +67,6 @@ android {
     androidResources {
         generateLocaleConfig = true
     }
-
 }
 
 kapt {
@@ -109,7 +108,6 @@ dependencies {
 
     implementation("androidx.core:core-splashscreen:1.0.0-beta02")
 
-    
     val appcompat_version = "1.6.1"
 
     implementation("androidx.appcompat:appcompat:$appcompat_version")
