@@ -27,7 +27,6 @@ import it.vfsfitvnm.vimusic.LocalPlayerServiceBinder
 import it.vfsfitvnm.vimusic.R
 import it.vfsfitvnm.vimusic.enums.ExoPlayerMinTimeForEvent
 import it.vfsfitvnm.vimusic.enums.PlayerThumbnailSize
-import it.vfsfitvnm.vimusic.enums.PlayerVisualizerType
 
 import it.vfsfitvnm.vimusic.ui.components.themed.HeaderWithIcon
 import it.vfsfitvnm.vimusic.ui.styling.LocalAppearance
@@ -38,7 +37,6 @@ import it.vfsfitvnm.vimusic.utils.exoPlayerMinTimeForEventKey
 import it.vfsfitvnm.vimusic.utils.isAtLeastAndroid6
 import it.vfsfitvnm.vimusic.utils.persistentQueueKey
 import it.vfsfitvnm.vimusic.utils.playerThumbnailSizeKey
-import it.vfsfitvnm.vimusic.utils.playerVisualizerTypeKey
 import it.vfsfitvnm.vimusic.utils.rememberPreference
 import it.vfsfitvnm.vimusic.utils.resumePlaybackWhenDeviceConnectedKey
 import it.vfsfitvnm.vimusic.utils.skipSilenceKey
@@ -71,7 +69,6 @@ fun PlayerSettings() {
     var playerThumbnailSize by rememberPreference(playerThumbnailSizeKey, PlayerThumbnailSize.Medium)
     var effectRotationEnabled by rememberPreference(effectRotationKey, true)
     var thumbnailTapEnabled by rememberPreference(thumbnailTapEnabledKey, false)
-    var playerVisualizerType by rememberPreference(playerVisualizerTypeKey, PlayerVisualizerType.Disabled)
 
     val activityResultLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { }
@@ -110,25 +107,6 @@ fun PlayerSettings() {
                 }
             }
         )
-
-        EnumValueSelectorSettingsEntry(
-            title = stringResource(R.string.visualizer),
-            selectedValue = playerVisualizerType,
-            onValueSelected = { playerVisualizerType = it },
-            valueText = {
-                when (it) {
-                    PlayerVisualizerType.Fancy -> stringResource(R.string.vt_fancy)
-                    PlayerVisualizerType.Circular -> stringResource(R.string.vt_circular)
-                    PlayerVisualizerType.Disabled -> stringResource(R.string.vt_disabled)
-                    PlayerVisualizerType.Stacked -> stringResource(R.string.vt_stacked)
-                    PlayerVisualizerType.Oneside -> stringResource(R.string.vt_one_side)
-                    PlayerVisualizerType.Doubleside -> stringResource(R.string.vt_double_side)
-                    PlayerVisualizerType.DoublesideCircular -> stringResource(R.string.vt_double_side_circular)
-                    PlayerVisualizerType.Full -> stringResource(R.string.vt_full)
-                }
-            }
-        )
-        ImportantSettingsDescription(text = stringResource(R.string.visualizer_require_mic_permission))
 
         SwitchSettingEntry(
             title = stringResource(R.string.player_rotating_buttons),

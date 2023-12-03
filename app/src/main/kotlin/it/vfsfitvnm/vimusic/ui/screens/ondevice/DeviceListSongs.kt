@@ -170,7 +170,6 @@ fun DeviceListSongs(
 
 
     val activity = LocalContext.current as Activity
-    //VisualizerComputer.setupPermissions( LocalContext.current as Activity)
     if (ContextCompat.checkSelfPermission(
             activity,
             if (isAtLeastAndroid13) Manifest.permission.READ_MEDIA_AUDIO

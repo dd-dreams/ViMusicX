@@ -71,7 +71,6 @@ import it.vfsfitvnm.vimusic.Database
 import it.vfsfitvnm.vimusic.LocalPlayerServiceBinder
 import it.vfsfitvnm.vimusic.R
 import it.vfsfitvnm.vimusic.enums.PlayerThumbnailSize
-import it.vfsfitvnm.vimusic.enums.PlayerVisualizerType
 import it.vfsfitvnm.vimusic.models.Info
 import it.vfsfitvnm.vimusic.models.ui.toUiMedia
 import it.vfsfitvnm.vimusic.service.PlayerService
@@ -106,7 +105,6 @@ import it.vfsfitvnm.vimusic.utils.forceSeekToPrevious
 import it.vfsfitvnm.vimusic.utils.getDownloadState
 import it.vfsfitvnm.vimusic.utils.manageDownload
 import it.vfsfitvnm.vimusic.utils.playerThumbnailSizeKey
-import it.vfsfitvnm.vimusic.utils.playerVisualizerTypeKey
 import it.vfsfitvnm.vimusic.utils.rememberPreference
 import it.vfsfitvnm.vimusic.utils.shuffleQueue
 import it.vfsfitvnm.vimusic.utils.trackLoopEnabledKey
@@ -159,8 +157,6 @@ fun Player(
         targetValue = if (isRotated) 360F else 0f,
         animationSpec = tween(durationMillis = 200)
     )
-
-    var playerVisualizerType by rememberPreference(playerVisualizerTypeKey, PlayerVisualizerType.Disabled)
 
     binder.player.DisposableListener {
         object : Player.Listener {
@@ -217,22 +213,6 @@ fun Player(
 
     }
 
-    /*
-        val audioComputer = VisualizerComputer()
-        val visualizerData = remember { mutableStateOf(VisualizerData()) }
-
-        LaunchedEffect(Unit) {
-            while(true) {
-                binder?.player?.audioSessionId?.let {
-                    audioComputer.start(audioSessionId = it, onData = { data ->
-                        visualizerData.value = data
-                    })
-                }
-                delay(5000)
-            }
-        }
-
-     */
     val ExistIdsExtras = mediaItem.mediaMetadata.extras?.getStringArrayList("artistIds")?.size.toString()
     val ExistAlbumIdExtras = mediaItem.mediaMetadata.extras?.getString("albumId")?.toString()
 
