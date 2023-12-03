@@ -246,4 +246,5 @@
     <string name="restart_app_please">Restart app please.</string>
     <string name="listen_on_piped">Listen on Piped</string>
     <string name="listen_on_invidious">Listen on Invidious</string>
+    <string name="version_filename" translatable="false">ViMusicXVersion.ver</string>
 </resources>

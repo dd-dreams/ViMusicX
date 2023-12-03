@@ -8,6 +8,7 @@ import android.text.format.DateUtils
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.media3.common.MediaItem
@@ -24,6 +25,7 @@ import it.vfsfitvnm.vimusic.BuildConfig
 import it.vfsfitvnm.vimusic.models.Song
 import it.vfsfitvnm.vimusic.service.LOCAL_KEY_PREFIX
 import it.vfsfitvnm.vimusic.service.MyDownloadService
+import it.vfsfitvnm.vimusic.R
 import it.vfsfitvnm.vimusic.service.isLocal
 import java.io.File
 
@@ -161,7 +163,7 @@ suspend fun Result<Innertube.PlaylistOrAlbumPage>.completed(maxDepth: Int = Int.
 @Composable
 fun isAvailableUpdate(): String {
     var newVersion = ""
-    val file = File(LocalContext.current.filesDir, "RiMusicUpdatedVersion.ver")
+    val file = File(LocalContext.current.filesDir, stringResource(R.string.version_filename))
     if (file.exists()) {
         newVersion = file.readText().substring(0, file.readText().length - 1)
         //Log.d("updatedVersion","${file.readText().length.toString()} ${file.readText().substring(0,file.readText().length-1)}")

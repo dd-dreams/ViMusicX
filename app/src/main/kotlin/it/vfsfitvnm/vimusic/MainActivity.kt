@@ -53,6 +53,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.coerceIn
 import androidx.compose.ui.unit.dp
@@ -179,18 +180,14 @@ class MainActivity : AppCompatActivity(), PersistMapOwner {
         val launchedFromNotification = intent?.extras?.getBoolean("expandPlayerBottomSheet") == true
 
         setContent {
-
-            val url = "https://raw.githubusercontent.com/fast4x/RiMusic/master/updatedVersion/updatedVersion.ver"
-            /*  */
+            val url = "https://raw.githubusercontent.com/dd-dreams/ViMusicX/master/updatedVersion/updatedVersion.ver"
             request.GET(url, object: Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val responseData = response.body?.string()
                     runOnUiThread{
                         try {
                             val newVersion = responseData.let { it.toString() }
-                            //Log.d("UpdatedVersion activity",newVersion)
-                            //val file = getFilesDir() //shows as unresolved reference
-                            val file = File(filesDir, "RiMusicUpdatedVersion.ver")
+                            val file = File(filesDir, resources.getString(R.string.version_filename))
                             file.writeText(newVersion)
                         } catch (e: JSONException) {
                             e.printStackTrace()
