@@ -15,7 +15,6 @@ import it.vfsfitvnm.compose.routing.RouteHandlerScope
 import it.vfsfitvnm.innertube.Innertube
 import it.vfsfitvnm.vimusic.enums.BuiltInPlaylist
 import it.vfsfitvnm.vimusic.enums.DeviceLists
-import it.vfsfitvnm.vimusic.enums.StatisticsType
 import it.vfsfitvnm.vimusic.models.Mood
 import it.vfsfitvnm.vimusic.ui.screens.album.AlbumScreen
 import it.vfsfitvnm.vimusic.ui.screens.artist.ArtistScreen
@@ -25,14 +24,12 @@ import it.vfsfitvnm.vimusic.ui.screens.home.QuickPicks
 import it.vfsfitvnm.vimusic.ui.screens.mood.MoodScreen
 import it.vfsfitvnm.vimusic.ui.screens.ondevice.DeviceListSongs
 import it.vfsfitvnm.vimusic.ui.screens.ondevice.DeviceListSongsScreen
-import it.vfsfitvnm.vimusic.ui.screens.statistics.StatisticsScreen
 
 val quickpicksRoute = Route1<String?>("quickpicksRoute")
 val albumRoute = Route1<String?>("albumRoute")
 val artistRoute = Route1<String?>("artistRoute")
 val builtInPlaylistRoute = Route1<BuiltInPlaylist>("builtInPlaylistRoute")
 val deviceListSongRoute = Route1<String>("deviceListSongRoute")
-val statisticsTypeRoute = Route1<StatisticsType>("statisticsTypeRoute")
 val localPlaylistRoute = Route1<Long?>("localPlaylistRoute")
 val searchResultRoute = Route1<String>("searchResultRoute")
 val searchRoute = Route1<String>("searchRoute")
@@ -74,12 +71,6 @@ inline fun RouteHandlerScope.globalRoutes() {
             browseId = browseId ?: error("browseId cannot be null"),
             params = params,
             //maxDepth = maxDepth
-        )
-    }
-
-    statisticsTypeRoute { browseId ->
-        StatisticsScreen(
-            statisticsType = browseId ?: error("browseId cannot be null")
         )
     }
 

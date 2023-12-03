@@ -24,7 +24,6 @@ import it.vfsfitvnm.compose.routing.isUnstacking
 import it.vfsfitvnm.vimusic.BuildConfig
 import it.vfsfitvnm.vimusic.Database
 import it.vfsfitvnm.vimusic.R
-import it.vfsfitvnm.vimusic.enums.StatisticsType
 import it.vfsfitvnm.vimusic.models.SearchQuery
 import it.vfsfitvnm.vimusic.models.toUiMood
 import it.vfsfitvnm.vimusic.query
@@ -46,7 +45,6 @@ import it.vfsfitvnm.vimusic.ui.screens.searchRoute
 import it.vfsfitvnm.vimusic.ui.screens.searchresult.SearchResultScreen
 import it.vfsfitvnm.vimusic.ui.screens.settings.SettingsScreen
 import it.vfsfitvnm.vimusic.ui.screens.settingsRoute
-import it.vfsfitvnm.vimusic.ui.screens.statisticsTypeRoute
 import it.vfsfitvnm.vimusic.utils.homeScreenTabIndexKey
 import it.vfsfitvnm.vimusic.utils.isAvailableUpdate
 import it.vfsfitvnm.vimusic.utils.pauseSearchHistoryKey
@@ -219,15 +217,6 @@ fun HomeScreen(
                             onNewReleaseAlbumClick = { albumRoute(it) },
                             onSearchClick = { searchRoute("") }
                         )
-
-                        /*
-                        5 -> HomeStatistics(
-                            onStatisticsType = { statisticsTypeRoute(it)},
-                            onBuiltInPlaylist = { builtInPlaylistRoute(it) },
-                            onPlaylistClick = { localPlaylistRoute(it.id) },
-                            onSearchClick = { searchRoute("") }
-                        )
-                         */
 
                         //6 -> settingsRoute()
                     }

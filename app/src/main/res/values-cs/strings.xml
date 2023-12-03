@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
+﻿<resources>
     <string name="cancel">Zrušit</string>
     <string name="done">Hotovo</string>
     <string name="hidesong">Opravdu chcete tuto skladbu skrýt? Její čas přehrávání a mezipaměť budou vymazány.\nTato akce je nevratná.</string>
@@ -170,18 +169,6 @@
     <string name="effects">Efekty</string>
     <string name="player_rotating_buttons">Otáčení tlačítek</string>
     <string name="player_enable_rotation_buttons">Povolit otáčení tlačítek při kliknutí</string>
-    <string name="statistics">Statistiky</string>
-    <string name="today">Dnes</string>
-    <string name="_1_week">1 týden</string>
-    <string name="_1_month">1 měsíc</string>
-    <string name="_3_month">3 měsíce</string>
-    <string name="_6_month">6 měsíců</string>
-    <string name="_1_year">1 rok</string>
-    <string name="all">Vše</string>
-    <string name="most_played_songs">Nejčastěji přehrávané skladby</string>
-    <string name="most_listened_artists">Nejčastěji poslouchaní interpreti</string>
-    <string name="most_albums_listened">Nejčastěji poslouchaná alba</string>
-    <string name="most_played_playlists">Nejčastěji přehrávané playlisty</string>
     <string name="languages">Jazyky</string>
     <string name="app_language">Jazyk aplikace</string>
     <string name="in_alphabetical_order">V abecedním pořadí:</string>

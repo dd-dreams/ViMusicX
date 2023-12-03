@@ -7,7 +7,6 @@ enum class NavigationTab {
     `Playlists`,
     `Artists`,
     `Albums`,
-    `Statistics`,
     `Settings`;
 
     val index: Int
@@ -18,8 +17,7 @@ enum class NavigationTab {
             Playlists -> 2
             Artists -> 3
             Albums -> 4
-            Statistics -> 5
-            Settings -> 6
+            Settings -> 5
         }
 
 }
