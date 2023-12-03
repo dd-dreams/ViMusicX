@@ -27,7 +27,6 @@ import it.vfsfitvnm.vimusic.LocalPlayerServiceBinder
 import it.vfsfitvnm.vimusic.R
 import it.vfsfitvnm.vimusic.enums.ExoPlayerMinTimeForEvent
 import it.vfsfitvnm.vimusic.enums.PlayerThumbnailSize
-import it.vfsfitvnm.vimusic.enums.PlayerTimelineType
 import it.vfsfitvnm.vimusic.enums.PlayerVisualizerType
 
 import it.vfsfitvnm.vimusic.ui.components.themed.HeaderWithIcon
@@ -39,7 +38,6 @@ import it.vfsfitvnm.vimusic.utils.exoPlayerMinTimeForEventKey
 import it.vfsfitvnm.vimusic.utils.isAtLeastAndroid6
 import it.vfsfitvnm.vimusic.utils.persistentQueueKey
 import it.vfsfitvnm.vimusic.utils.playerThumbnailSizeKey
-import it.vfsfitvnm.vimusic.utils.playerTimelineTypeKey
 import it.vfsfitvnm.vimusic.utils.playerVisualizerTypeKey
 import it.vfsfitvnm.vimusic.utils.rememberPreference
 import it.vfsfitvnm.vimusic.utils.resumePlaybackWhenDeviceConnectedKey
@@ -76,7 +74,6 @@ fun PlayerSettings() {
     var wavedPLayerTimelineEnabled by rememberPreference(wavedPlayerTimelineKey, false)
     var thumbnailTapEnabled by rememberPreference(thumbnailTapEnabledKey, false)
     var playerVisualizerType by rememberPreference(playerVisualizerTypeKey, PlayerVisualizerType.Disabled)
-    var playerTimelineType by rememberPreference(playerTimelineTypeKey, PlayerTimelineType.Default)
 
     val activityResultLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { }
@@ -124,19 +121,6 @@ SwitchSettingEntry(
     onCheckedChange = { wavedPLayerTimelineEnabled = it }
 )
 */
-        EnumValueSelectorSettingsEntry(
-            title = stringResource(R.string.timeline),
-            selectedValue = playerTimelineType,
-            onValueSelected = { playerTimelineType = it },
-            valueText = {
-                when (it) {
-                    PlayerTimelineType.Default -> stringResource(R.string._default)
-                    PlayerTimelineType.Wavy -> stringResource(R.string.wavy_timeline)
-                }
-            }
-        )
-
-
         EnumValueSelectorSettingsEntry(
             title = stringResource(R.string.visualizer),
             selectedValue = playerVisualizerType,

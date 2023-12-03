@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.media.audiofx.AudioEffect
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
@@ -63,7 +62,6 @@ import it.vfsfitvnm.innertube.models.NavigationEndpoint
 import it.vfsfitvnm.vimusic.Database
 import it.vfsfitvnm.vimusic.LocalPlayerServiceBinder
 import it.vfsfitvnm.vimusic.R
-import it.vfsfitvnm.vimusic.enums.PlayerTimelineType
 import it.vfsfitvnm.vimusic.equalizer.audio.VisualizerComputer
 import it.vfsfitvnm.vimusic.equalizer.audio.VisualizerData
 import it.vfsfitvnm.vimusic.models.Info
@@ -72,7 +70,6 @@ import it.vfsfitvnm.vimusic.models.ui.UiMedia
 import it.vfsfitvnm.vimusic.query
 import it.vfsfitvnm.vimusic.service.PlayerService
 import it.vfsfitvnm.vimusic.ui.components.SeekBar
-import it.vfsfitvnm.vimusic.ui.components.SeekBarWaved
 import it.vfsfitvnm.vimusic.ui.components.themed.BaseMediaItemMenu
 import it.vfsfitvnm.vimusic.ui.components.themed.IconButton
 import it.vfsfitvnm.vimusic.ui.components.themed.ScrollText
@@ -89,16 +86,11 @@ import it.vfsfitvnm.vimusic.utils.forceSeekToNext
 import it.vfsfitvnm.vimusic.utils.forceSeekToPrevious
 import it.vfsfitvnm.vimusic.utils.formatAsDuration
 import it.vfsfitvnm.vimusic.utils.isCompositionLaunched
-import it.vfsfitvnm.vimusic.utils.playerTimelineTypeKey
 import it.vfsfitvnm.vimusic.utils.rememberPreference
 import it.vfsfitvnm.vimusic.utils.seamlessPlay
 import it.vfsfitvnm.vimusic.utils.semiBold
 import it.vfsfitvnm.vimusic.utils.toast
-import it.vfsfitvnm.vimusic.utils.wavedPlayerTimelineKey
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
-
 
 @SuppressLint("SuspiciousIndentation")
 @ExperimentalFoundationApi
@@ -152,7 +144,6 @@ fun Controls(
     )
     var effectRotationEnabled by rememberPreference(effectRotationKey, true)
     //var wavedPlayerTimelineEnabled by rememberPreference(wavedPlayerTimelineKey, false)
-    var playerTimelineType by rememberPreference(playerTimelineTypeKey, PlayerTimelineType.Default)
 
     val scope = rememberCoroutineScope()
     val animatedPosition = remember { Animatable(position.toFloat()) }
@@ -364,7 +355,6 @@ fun Controls(
         )
 
 
-        if (playerTimelineType == PlayerTimelineType.Default)
         SeekBar(
             value = scrubbingPosition ?: position,
             minimumValue = 0,
@@ -388,50 +378,15 @@ fun Controls(
             shape = RoundedCornerShape(8.dp)
         )
 
-
-
-        if (playerTimelineType == PlayerTimelineType.Wavy)
-            SeekBarWaved(
-                position = { animatedPosition.value },
-                range = 0f..media.duration.toFloat(),
-                onSeekStarted = {
-                    isSeeking = true
-                    scope.launch {
-                        animatedPosition.animateTo(it)
-                    }
-                },
-                onSeek = { delta ->
-                    if (media.duration != C.TIME_UNSET) {
-                        isSeeking = true
-                        scope.launch {
-                            animatedPosition.snapTo(
-                                animatedPosition.value.plus(delta)
-                                    .coerceIn(0f, media.duration.toFloat())
-                            )
-                        }
-                    }
-                },
-                onSeekFinished = {
-                    isSeeking = false
-                    animatedPosition.let {
-                        binder.player.seekTo(it.targetValue.toLong())
-                    }
-                },
-                color = colorPalette.collapsedPlayerProgressBar,
-                isActive = binder.player.isPlaying,
-                backgroundColor = colorPalette.textSecondary,
-                shape = RoundedCornerShape(8.dp)
-            )
-            AnimatedVisibility(
-                durationVisible,
-                enter = fadeIn() + expandVertically { -it },
-                exit = fadeOut() + shrinkVertically { -it }) {
-                Column {
-                    Spacer(Modifier.height(8.dp))
-                    Duration(animatedPosition.value, media.duration)
-                }
+        AnimatedVisibility(
+            durationVisible,
+            enter = fadeIn() + expandVertically { -it },
+            exit = fadeOut() + shrinkVertically { -it }) {
+            Column {
+                Spacer(Modifier.height(8.dp))
+                Duration(animatedPosition.value, media.duration)
             }
-
+        }
 
         Spacer(
             modifier = Modifier

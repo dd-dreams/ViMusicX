@@ -11,7 +11,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.edit
 
-const val playerTimelineTypeKey = "playerTimelineType"
 const val playerVisualizerTypeKey = "playerVisualizerType"
 const val thumbnailTapEnabledKey = "thumbnailTapEnabled"
 const val wavedPlayerTimelineKey = "wavedPlayerTimeline"
