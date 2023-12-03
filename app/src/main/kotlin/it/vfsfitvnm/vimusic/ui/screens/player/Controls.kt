@@ -141,7 +141,6 @@ fun Controls(
         animationSpec = tween(durationMillis = 200)
     )
     var effectRotationEnabled by rememberPreference(effectRotationKey, true)
-    //var wavedPlayerTimelineEnabled by rememberPreference(wavedPlayerTimelineKey, false)
 
     val scope = rememberCoroutineScope()
     val animatedPosition = remember { Animatable(position.toFloat()) }

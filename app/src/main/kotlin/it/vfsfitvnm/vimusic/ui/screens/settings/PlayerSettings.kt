@@ -45,7 +45,6 @@ import it.vfsfitvnm.vimusic.utils.skipSilenceKey
 import it.vfsfitvnm.vimusic.utils.thumbnailTapEnabledKey
 import it.vfsfitvnm.vimusic.utils.toast
 import it.vfsfitvnm.vimusic.utils.volumeNormalizationKey
-import it.vfsfitvnm.vimusic.utils.wavedPlayerTimelineKey
 
 @ExperimentalAnimationApi
 @UnstableApi
@@ -71,7 +70,6 @@ fun PlayerSettings() {
 
     var playerThumbnailSize by rememberPreference(playerThumbnailSizeKey, PlayerThumbnailSize.Medium)
     var effectRotationEnabled by rememberPreference(effectRotationKey, true)
-    var wavedPLayerTimelineEnabled by rememberPreference(wavedPlayerTimelineKey, false)
     var thumbnailTapEnabled by rememberPreference(thumbnailTapEnabledKey, false)
     var playerVisualizerType by rememberPreference(playerVisualizerTypeKey, PlayerVisualizerType.Disabled)
 
@@ -113,14 +111,6 @@ fun PlayerSettings() {
             }
         )
 
-        /*
-SwitchSettingEntry(
-    title = stringResource(R.string.wavy_timeline),
-    text = stringResource(R.string.enable_wavy_timeline),
-    isChecked = wavedPLayerTimelineEnabled,
-    onCheckedChange = { wavedPLayerTimelineEnabled = it }
-)
-*/
         EnumValueSelectorSettingsEntry(
             title = stringResource(R.string.visualizer),
             selectedValue = playerVisualizerType,
