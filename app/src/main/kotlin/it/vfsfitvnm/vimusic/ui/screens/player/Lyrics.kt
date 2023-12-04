@@ -49,9 +49,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.C
 import androidx.media3.common.MediaMetadata
-import androidx.media3.common.util.Log
 import androidx.media3.common.util.UnstableApi
-import com.google.mlkit.nl.translate.TranslateLanguage
 import com.valentinilk.shimmer.shimmer
 import it.vfsfitvnm.innertube.Innertube
 import it.vfsfitvnm.innertube.models.bodies.NextBody
@@ -60,11 +58,9 @@ import it.vfsfitvnm.kugou.KuGou
 import it.vfsfitvnm.vimusic.Database
 import it.vfsfitvnm.vimusic.LocalPlayerServiceBinder
 import it.vfsfitvnm.vimusic.R
-import it.vfsfitvnm.vimusic.enums.Languages
 import it.vfsfitvnm.vimusic.models.Lyrics
 import it.vfsfitvnm.vimusic.query
 import it.vfsfitvnm.vimusic.ui.components.LocalMenuState
-import it.vfsfitvnm.vimusic.ui.components.themed.IconButton
 import it.vfsfitvnm.vimusic.ui.components.themed.Menu
 import it.vfsfitvnm.vimusic.ui.components.themed.MenuEntry
 import it.vfsfitvnm.vimusic.ui.components.themed.TextFieldDialog
@@ -77,9 +73,7 @@ import it.vfsfitvnm.vimusic.utils.SynchronizedLyrics
 import it.vfsfitvnm.vimusic.utils.center
 import it.vfsfitvnm.vimusic.utils.color
 import it.vfsfitvnm.vimusic.utils.isShowingSynchronizedLyricsKey
-import it.vfsfitvnm.vimusic.utils.languageAppKey
 import it.vfsfitvnm.vimusic.utils.medium
-import it.vfsfitvnm.vimusic.utils.mlkit.Translate
 import it.vfsfitvnm.vimusic.utils.rememberPreference
 import it.vfsfitvnm.vimusic.utils.toast
 import it.vfsfitvnm.vimusic.utils.verticalFadingEdge
@@ -126,27 +120,6 @@ fun Lyrics(
         var isError by remember(mediaId, isShowingSynchronizedLyrics) {
             mutableStateOf(false)
         }
-
-        var languageApp  by rememberPreference(languageAppKey, Languages.English)
-
-        val languageDestination = when (languageApp.code) {
-            "ru" -> TranslateLanguage.RUSSIAN
-            "it" -> TranslateLanguage.ITALIAN
-            "cs" -> TranslateLanguage.CZECH
-            "de" -> TranslateLanguage.DUTCH
-            "es" -> TranslateLanguage.SPANISH
-            "fr" -> TranslateLanguage.FRENCH
-            "ro" -> TranslateLanguage.ROMANIAN
-            "tr" -> TranslateLanguage.TURKISH
-            "pl" -> TranslateLanguage.POLISH
-            else -> { TranslateLanguage.ENGLISH }
-        }
-
-        var translateEnabled by remember {
-            mutableStateOf(false)
-        }
-
-
 
         LaunchedEffect(mediaId, isShowingSynchronizedLyrics) {
             withContext(Dispatchers.IO) {
@@ -320,9 +293,7 @@ fun Lyrics(
                         itemsIndexed(items = synchronizedLyrics.sentences) { index, sentence ->
 
                             BasicText(
-                                text = if (translateEnabled == true)
-                                    Translate(sentence.second, languageDestination)
-                                else sentence.second,
+                                text = sentence.second,
                                 style = typography.xs.center.medium.color(if (index == synchronizedLyrics.index) PureBlackColorPalette.text else PureBlackColorPalette.textDisabled),
                                 modifier = Modifier
                                     .padding(vertical = 4.dp, horizontal = 32.dp)
@@ -332,9 +303,7 @@ fun Lyrics(
                 } else {
 
                     BasicText(
-                        text =  if (translateEnabled == true)
-                            Translate(text, languageDestination)
-                        else text,
+                        text = text,
                         style = typography.xs.center.medium.color(PureBlackColorPalette.text),
                         modifier = Modifier
                             .verticalFadingEdge()
@@ -360,17 +329,6 @@ fun Lyrics(
                     }
                 }
             }
-
-            IconButton(
-                icon = R.drawable.translate,
-                color = if (translateEnabled == true ) colorPalette.text else colorPalette.textDisabled,
-                enabled = true,
-                onClick = { translateEnabled = !translateEnabled },
-                modifier = Modifier
-                    .padding(all = 8.dp)
-                    .align(Alignment.BottomStart)
-                    .size(24.dp)
-            )
 
             Image(
                 painter = painterResource(R.drawable.ellipsis_vertical),
