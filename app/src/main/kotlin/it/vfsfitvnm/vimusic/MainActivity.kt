@@ -518,7 +518,7 @@ class MainActivity : AppCompatActivity(), PersistMapOwner {
         //intent.data = null
         //this.intent = null
 
-        Toast.makeText(this, "${"RiMusic "}${getString(R.string.opening_url)}", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "${"ViMusicX"}${getString(R.string.opening_url)}", Toast.LENGTH_LONG).show()
 
         lifecycleScope.launch(Dispatchers.IO) {
             when (val path = uri.pathSegments.firstOrNull()) {
